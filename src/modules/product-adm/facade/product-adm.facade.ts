@@ -3,25 +3,25 @@ import ProductAdmFacadeInterdace, { AddProductFacadeInputDto, CheckStockFacadeIn
 
 export interface UseCaseProps {
   addUseCase: UseCaseInterface;
-  checkStockUseCase: UseCaseInterface;
+  stockUseCase: UseCaseInterface;
 }
 
 
 export default class ProductAdmFacade implements ProductAdmFacadeInterdace {
   private addUseCase: UseCaseInterface;
-  private checkStockUseCase: UseCaseInterface;
+  private stockUseCase: UseCaseInterface;
 
   constructor(
     useCases: UseCaseProps
   ) {
     this.addUseCase = useCases.addUseCase;
-    this.checkStockUseCase = useCases.checkStockUseCase;
+    this.stockUseCase = useCases.stockUseCase;
   }
 
   addProduct(input: AddProductFacadeInputDto): Promise<void> {
     return this.addUseCase.execute(input);
   }
   checkStock(input: CheckStockFacadeInputDto): Promise<CheckStockFacadeOutputDto> {
-    return this.checkStockUseCase.execute(input);
+    return this.stockUseCase.execute(input);
   }
 }
